@@ -171,17 +171,30 @@ public class BoardActivity extends AppCompatActivity {
         });
     }
 
-    private void delete_content(int position) { // 파일 position값을 넘어오게 하고 그 값으로 이미지 이름을 참조하는 것이 좋다. 이미지 이름을 넘기게 되면 데이터손실 생길시 위험부담이 있다. 게시글을 삭제하는 부분
+    private void delete_content(final int position) { // 파일 position값을 넘어오게 하고 그 값으로 이미지 이름을 참조하는 것이 좋다. 이미지 이름을 넘기게 되면 데이터손실 생길시 위험부담이 있다. 게시글을 삭제하는 부분
+                                                            // 콜백 함수를 동시에 실행하는 것은 프로그램의 불안정성을 야기할수 있다. 그러면 하나의 과정이 실행하고 난후 다음 과정을 실행하는 것이 좋다.
         storage.getReference().child("images").child(imageDTOS.get(position).imageNmae).delete().addOnSuccessListener(new OnSuccessListener<Void>() { // 제대로 지워졌는지 확인하려면 콜백 함수를 사용하면 된다.
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(BoardActivity.this, "삭제 완료", Toast.LENGTH_LONG).show();
+                // uidList.get(position) : 디비 키값이다 (하나의 트리의 키값(root 값)이라고 생각할 수 있다.)
+                firebaseDatabase.getReference().child("images").child(uidList.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() { // .setValue(null) 도 삭제하는 구문
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(BoardActivity.this, "삭제가 완료 되었습니다.", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(BoardActivity.this, "삭제 실패되었습니다.", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(BoardActivity.this, "삭제 실패", Toast.LENGTH_LONG).show();
+                Toast.makeText(BoardActivity.this, "삭제 실패되었습니다.", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 }

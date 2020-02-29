@@ -219,7 +219,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (requestCode == GALLERY_CODE) {
             imagePath = getPath(data.getData());
             File file = new File(imagePath);
-            imageView_add_image.setImageURI(Uri.fromFile(file)); // 이미지를 fragment_add_image의 이미지뷰에 가져오기
+            //imageView_add_image.setImageURI(Uri.fromFile(file)); // 이미지를 fragment_add_image의 이미지뷰에 가져오기
+            Glide.with(this).load(file).into(imageView_add_image); //-> 이미지를 가져오는 부분에 있어서 속도가 다르다.
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
