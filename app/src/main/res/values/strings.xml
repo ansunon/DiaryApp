@@ -15,6 +15,17 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string> <!-- 페이스북-->
+    <string name="menu_send">Send</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string> <!-- 페이스북-->
+    <string name="long_text">I stand on this rostrum with a sense of deep humility and great pride-humility in the wake of those great American architects of our history who have stood here vefore me, pride in the reflection that this forum of legislative debate represents human liberty in the pureest form yet devised.
+        Here are centered the hopes and aspirations and faith of the entire human race.
+        I do not stand here as advocate for any partisan cause, forth issues are fundamental and reach quite beyond the realm of partisan consideration. They must be resolved on the highest plane of national interest if our course is to prove sound and our future protected.
+        I trust, therefore, that you will do me the justice of receiving that which i have to say as solely expressing the considered viewpoint of fellow American.
+        I address you with neither rancor nor bitterness in the fading twilight of life, but with but one purpose in mind: to serve my country...
+        The world has turned over many times since I took the oath on the plain at West Point, and the hopes and dreams have long since vanished, but I still remember the refrain of one of the most popular barrack ballads of that day which proclaimed most proudly that old solders never die; they just fade away.
+        And like the old soldier of that ballad, I now close my military career and just fade away, and old soldier who tried to do his duty as God gave him the light to see that duty. Good-bye.</string>
+    <string name="title_activity_post_upload">PostUploadActivity</string>
 
 </resources>

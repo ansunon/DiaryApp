@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(FACEBOOK_TAG, "facebook:onError", error);
+                Log.d(FACEBOOK_TAG, "facebook: onError", error);
             }
         });// ...
 
@@ -100,10 +100,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     finish();
-                } else {
+                } else { // 로그인이 안되어있는 부분
 
                 }
             }
@@ -133,7 +132,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener); // 리스너에 연결해주는 부분 귀를 붙혀주는 부분
     }
 
@@ -229,7 +227,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser(); // 리스너에 현재 접속한 계정을 넣어준다.
+                    Toast.makeText(LoginActivity.this, "email login success.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "email login failed.", Toast.LENGTH_SHORT).show();
                 }

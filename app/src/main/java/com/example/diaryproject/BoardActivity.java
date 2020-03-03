@@ -102,9 +102,9 @@ public class BoardActivity extends AppCompatActivity {
             });
 
             if (imageDTOS.get(position).stars.containsKey(auth.getCurrentUser().getUid())) { // like button 을 눌렀니? 부분 start안에 내 uid가 있는지 확인하는 부분이다.
-                ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.like_icon_black);
+                ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_like_icon_black);
             } else {
-                ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.like_icon_border_black);
+                ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_like_icon_border_black);
             }
 
             ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
