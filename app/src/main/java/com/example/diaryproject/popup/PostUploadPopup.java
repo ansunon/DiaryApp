@@ -1,28 +1,19 @@
-package com.example.diaryproject;
+package com.example.diaryproject.popup;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.PostDTO;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.diaryproject.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.loader.content.CursorLoader;
 
 import android.provider.MediaStore;
@@ -30,12 +21,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-
-public class PostUploadActivity extends AppCompatActivity {
+public class PostUploadPopup extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     private FirebaseStorage storage;
@@ -48,11 +36,12 @@ public class PostUploadActivity extends AppCompatActivity {
     private EditText title;
     private EditText description;
     private Button upload_btn;
+    private Button cancel_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_upload);
+        setContentView(R.layout.popup_post_upload);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance(); // 데이터베이스를 가져오는 부분
@@ -71,6 +60,13 @@ public class PostUploadActivity extends AppCompatActivity {
                 upload();
             }
         });
+        cancel_btn = findViewById(R.id.cancel_button);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         //------------------------------------------------------------------
     }
 
@@ -84,8 +80,8 @@ public class PostUploadActivity extends AppCompatActivity {
 
                 databaseReference.child("post").push().setValue(postDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
 
-                Toast.makeText(PostUploadActivity.this, "upload success", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(PostUploadPopup.this, "upload success", Toast.LENGTH_SHORT).show();
+                finish();
     }
 
 

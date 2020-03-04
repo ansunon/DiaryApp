@@ -11,18 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.ImageDTO;
 import com.example.diaryproject.DTO.PostDTO;
-import com.example.diaryproject.PostUploadActivity;
+import com.example.diaryproject.popup.PostUploadPopup;
 import com.example.diaryproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -94,7 +91,7 @@ public class NotificationsFragment extends Fragment {
         post_upload_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), PostUploadActivity.class)); // 게시글 작성 페이지로 이동한다. ※※※※※※※※※※※※※※※
+                startActivity(new Intent(getContext(), PostUploadPopup.class)); // 게시글 작성 페이지로 이동한다. ※※※※※※※※※※※※※※※
             }
         });
 

@@ -15,11 +15,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".popup.CreateCategoryPopup"
             android:theme="@style/popup"></activity>
-        <activity android:name=".BoardUploadActivity" />
+        <activity android:name=".popup.BoardUploadPopup"
+            android:theme="@style/popup"></activity>
         <activity
-            android:name=".PostUploadActivity"
+            android:name=".popup.PostUploadPopup"
             android:label="@string/title_activity_post_upload"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/popup"></activity>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />

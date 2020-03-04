@@ -1,4 +1,4 @@
-package com.example.diaryproject;
+package com.example.diaryproject.popup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.ImageDTO;
+import com.example.diaryproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +33,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 
-public class BoardUploadActivity extends AppCompatActivity {
+public class BoardUploadPopup extends AppCompatActivity {
     private long time = 0; // 취소 버튼을 누를때 사용하는 변수
 
     private static final int GALLERY_CODE = 10; // navigation에서 갤러리 이모티콘 불류
@@ -52,11 +53,12 @@ public class BoardUploadActivity extends AppCompatActivity {
     private EditText title;
     private EditText description;
     private Button upload_btn;
+    private Button cancel_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_upload);
+        setContentView(R.layout.popup_board_upload);
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance(); // 데이터베이스를 가져오는 부분
@@ -82,6 +84,13 @@ public class BoardUploadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 upload(imagePath);
+            }
+        });
+        cancel_btn = findViewById(R.id.cancel_button);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
         //------------------------------------------------------------------
@@ -119,6 +128,7 @@ public class BoardUploadActivity extends AppCompatActivity {
                 databaseReference.child("images").push().setValue(imageDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
 
                 Toast.makeText(getApplicationContext(), "upload success", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
