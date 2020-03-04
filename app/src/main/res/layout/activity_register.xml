@@ -133,14 +133,14 @@
                     android:text="남성" />
             </RadioGroup>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--지금은 가입버튼을 로그인으로 테스트 해보자 -->
+
         <Button
             android:id="@+id/registerButton"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/colorBlue"
+            android:background="@color/colorGreen"
             android:text="가입"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />

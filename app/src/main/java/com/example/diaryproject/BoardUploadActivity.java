@@ -37,7 +37,7 @@ public class BoardUploadActivity extends AppCompatActivity {
 
     private static final int GALLERY_CODE = 10; // navigation에서 갤러리 이모티콘 불류
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     private FirebaseStorage storage;
     private FirebaseDatabase database;

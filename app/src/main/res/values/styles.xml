@@ -25,6 +25,30 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!-- popup style -->
+    <style name="popup" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item> <!-- 타이틀바 없애기-->
+    </style>
 
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+<!--        &lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;-->
+<!--        <item name="android:textColorHint">@color/colorPrimary</item>-->
+<!--        <item name="android:textSize">20sp</item>-->
+<!--        &lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;-->
+<!--        <item name="colorAccent">@color/colorPrimary</item>-->
+<!--        <item name="colorControlNormal">@color/colorPrimary</item>-->
+<!--        <item name="colorControlActivated">@color/colorPrimary</item>-->
+<!--        <item name="colorControlHighlight">@color/colorPrimary</item>-->
+
+        <item name="hintTextAppearance">@color/colorPrimary</item>
+        <item name="errorTextAppearance">@android:color/holo_red_dark</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+    </style>
 </resources>

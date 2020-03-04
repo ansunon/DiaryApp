@@ -119,9 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(FACEBOOK_TAG, "signInWithCredential:success");
-                    FirebaseUser user = mAuth.getCurrentUser(); // 리스너에 현재 접속한 계정을 넣어준다.
+
+                    Toast.makeText(LoginActivity.this, "current user: " + mAuth.getCurrentUser().getDisplayName(), Toast.LENGTH_LONG).show();
+                    //FirebaseUser user = mAuth.getCurrentUser(); // 리스너에 현재 접속한 계정을 넣어준다.
                 } else {
                     // If sign in fails, display a message to the user.
+                    Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_LONG).show();
                     Log.w(FACEBOOK_TAG, "signInWithCredential:failure", task.getException());
                 }
             }
@@ -132,6 +135,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStart() {
         super.onStart();
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener); // 리스너에 연결해주는 부분 귀를 붙혀주는 부분
     }
 
@@ -174,7 +178,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.w(GOOLGE_TAG, "Google sign in success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
 
                         } else {
                             Log.w(GOOLGE_TAG, "Google sign in failed");
@@ -210,10 +214,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (i == R.id.signInButton) {
             signIn();
         } else if (i == R.id.email_login_button) {
-            if (mAuth.getCurrentUser() == null) {
+            if (!emailTextview.getText().toString().equals("") && !passwordTextview.getText().toString().equals("") ) {
                 loginUser(emailTextview.getText().toString(), passwordTextview.getText().toString()); // 여기서 인텐트를 시작하면 안돼
             } else {
-                Toast.makeText(LoginActivity.this, "current user: " + mAuth.getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요", Toast.LENGTH_LONG).show();
             }
         } else if (i == R.id.register_textview) { //회원가입 부분을 클릭할 때
             Intent intent = new Intent(this, RegisterActivity.class);

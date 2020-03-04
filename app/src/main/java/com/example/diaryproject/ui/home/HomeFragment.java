@@ -24,7 +24,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.ImageDTO;
+import com.example.diaryproject.HomeActivity;
+import com.example.diaryproject.LoginActivity;
 import com.example.diaryproject.R;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +64,8 @@ public class HomeFragment extends Fragment {
     private EditText description;
     private Button upload_btn;
 
+    private Button logout_btn;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -93,7 +98,19 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 //        //------------------------------------------------------------------
+        logout_btn = root.findViewById(R.id.mypage_logout_btn);
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut(); // 구글, 페이스북 로그아웃도 된다.
+                LoginManager.getInstance().logOut();
+                // 현재 프래그먼트를 종료시켜야하는데...
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                //getActivity().getSupportFragmentManager().beginTransaction().remove(HomeFragment.this).commit();
 
+            }
+        });
         return root;
     }
 
@@ -143,6 +160,7 @@ public class HomeFragment extends Fragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     public String getPath(Uri uri) { // 핸드폰 갤러리의 이미지 주소를 가져오는 부분
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader cursorLoader = new CursorLoader(getContext(), uri, proj, null, null, null);

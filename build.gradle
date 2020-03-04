@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral() // facebook 로그인을 위해서 필요
         
     }
     dependencies {
