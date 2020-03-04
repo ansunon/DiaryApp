@@ -113,7 +113,8 @@ public class NotificationsFragment extends Fragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
             ((CustomViewHolder) holder).textView_title.setText(postDTOS.get(position).title);
             ((CustomViewHolder) holder).textView_description.setText(postDTOS.get(position).description);
-
+            ((CustomViewHolder)holder).postAuthor_email.setText(postDTOS.get(position).userId);
+            ((CustomViewHolder)holder).poststarNum.setText(postDTOS.get(position).starCount+"");
             //Glide.with(((CustomViewHolder) holder).itemView.getContext()).load(postDTOS.get(position).profile_imageUrl).into(((CustomViewHolder) holder).profile_imageView); // itemView 가 무엇이지...?
             ((CustomViewHolder) holder).starButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,6 +148,8 @@ public class NotificationsFragment extends Fragment {
             private TextView textView_description;
             private ImageView starButton; // like button
             private ImageView deleteButton; // 삭제 버튼
+            private TextView postAuthor_email;
+            private TextView poststarNum; // 별 수
 
             public CustomViewHolder(View view) {
                 super(view);
@@ -154,6 +157,8 @@ public class NotificationsFragment extends Fragment {
                 textView_title = view.findViewById(R.id.postTitle);
                 textView_description = view.findViewById(R.id.postDescription);
                 starButton = view.findViewById(R.id.post_starButton_imageView);
+                postAuthor_email = view.findViewById(R.id.postAuthor_email);
+                poststarNum = view.findViewById(R.id.postNumStars);
                 //deleteButton = view.findViewById(R.id.item_delete_imageview); // -> 내가 사용자라면 띄어야하는 부분
             }
         }
