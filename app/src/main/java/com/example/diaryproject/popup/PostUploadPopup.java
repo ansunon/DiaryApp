@@ -77,6 +77,7 @@ public class PostUploadPopup extends AppCompatActivity {
                 postDTO.description = description.getText().toString();
                 postDTO.uid = mAuth.getCurrentUser().getUid();
                 postDTO.userId = mAuth.getCurrentUser().getEmail();
+                postDTO.writer_profile_imageUrl = mAuth.getCurrentUser().getPhotoUrl().toString(); // 작성자의 프로필 이미지는 등록하는 부분
 
                 databaseReference.child("post").push().setValue(postDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
 

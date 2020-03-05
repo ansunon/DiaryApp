@@ -110,6 +110,7 @@ public class CreateCategoryPopup extends AppCompatActivity {
                 categoryDTO.userId = auth.getCurrentUser().getEmail();
                 categoryDTO.imageNmae = file.getLastPathSegment();
 
+                // 이름이 겹치면 안되게 해야한다.
                 databaseReference.child("category").push().setValue(categoryDTO);
                 Toast.makeText(CreateCategoryPopup.this, "create category success", Toast.LENGTH_SHORT).show();
                 finish();

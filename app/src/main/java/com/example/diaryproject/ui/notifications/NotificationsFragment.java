@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.BoardDTO;
 import com.example.diaryproject.DTO.PostDTO;
 import com.example.diaryproject.popup.PostUploadPopup;
@@ -112,7 +113,7 @@ public class NotificationsFragment extends Fragment {
             ((CustomViewHolder) holder).textView_description.setText(postDTOS.get(position).description);
             ((CustomViewHolder)holder).postAuthor_email.setText(postDTOS.get(position).userId);
             ((CustomViewHolder)holder).poststarNum.setText(postDTOS.get(position).starCount+"");
-            //Glide.with(((CustomViewHolder) holder).itemView.getContext()).load(postDTOS.get(position).profile_imageUrl).into(((CustomViewHolder) holder).profile_imageView); // itemView 가 무엇이지...?
+            Glide.with(((CustomViewHolder) holder).itemView.getContext()).load(postDTOS.get(position).writer_profile_imageUrl).into(((CustomViewHolder) holder).writer_profile_image);
             ((CustomViewHolder) holder).starButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -147,6 +148,7 @@ public class NotificationsFragment extends Fragment {
             private ImageView deleteButton; // 삭제 버튼
             private TextView postAuthor_email;
             private TextView poststarNum; // 별 수
+            private ImageView writer_profile_image;
 
             public CustomViewHolder(View view) {
                 super(view);
@@ -157,6 +159,7 @@ public class NotificationsFragment extends Fragment {
                 postAuthor_email = view.findViewById(R.id.postAuthor_email);
                 poststarNum = view.findViewById(R.id.postNumStars);
                 //deleteButton = view.findViewById(R.id.item_delete_imageview); // -> 내가 사용자라면 띄어야하는 부분
+                writer_profile_image = view.findViewById(R.id.postAuthor_image);
             }
         }
     }

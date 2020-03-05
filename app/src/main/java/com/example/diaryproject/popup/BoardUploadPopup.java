@@ -123,8 +123,9 @@ public class BoardUploadPopup extends AppCompatActivity {
                 boardDTO.uid = mAuth.getCurrentUser().getUid();
                 boardDTO.userId = mAuth.getCurrentUser().getEmail();
                 boardDTO.imageNmae = file.getLastPathSegment(); // 삭제할 이미지의 이름
+                boardDTO.writer_profile_imageUrl = mAuth.getCurrentUser().getPhotoUrl().toString(); // 작성자의 프로필 이미지는 등록하는 부분
 
-                databaseReference.child("images").push().setValue(boardDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
+                databaseReference.child("board").push().setValue(boardDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
 
                 Toast.makeText(getApplicationContext(), "upload success", Toast.LENGTH_SHORT).show();
                 finish();

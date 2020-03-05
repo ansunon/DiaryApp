@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <!--해당이미지 클릭시 해당 갤러리로 이동해야한다.-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/item_category_imageview"
@@ -12,7 +11,9 @@
         android:layout_height="120dp"
         android:layout_gravity="center_vertical"
         android:layout_margin="5dp"
-        android:src="@drawable/ic_add_circle_black_48dp"/>
+        android:src="@drawable/ic_add_circle_black_48dp"
+        app:civ_border_color="@color/colorGray"
+        app:civ_border_width="1dp"/>
 
     <!--center_horizontal 로 텍스트뷰 중앙에 나오게한다.-->
     <TextView

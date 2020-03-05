@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostDTO {
-    public String profile_imageUrl; // 프로필 이미지
+    public String writer_profile_imageUrl; // 작성한 유저의 프로필 이미지 url
     public String imageNmae; // 삭제할 이미지의 이름을 저장하는 변수 --> 필요없는 변수인것 같다
     public String title;  // 방명록 제목
     public String description; // 내용

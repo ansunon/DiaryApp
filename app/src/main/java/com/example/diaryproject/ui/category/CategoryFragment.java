@@ -104,6 +104,20 @@ public class CategoryFragment extends Fragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             ((CustomViewHolder)holder).textView.setText(categoryDTOList.get(position).category_name);
             Glide.with(((CustomViewHolder)holder).itemView.getContext()).load(categoryDTOList.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+
+            ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener(){ // 카테고리 이미지 클릭시 해당 카테고리로 이동하는 부분
+                @Override
+                public void onClick(View v) { // 카테고리 이미지 클릭시 해당 그리드 이미지로 이동
+//                    Fragment gallery_frag;
+//                    gallery_frag = new Gallery_frag(); // fragment 객체를 여기서 미리 생성
+//                    FragmentManager fm = getActivity().getSupportFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//
+//                    fragmentTransaction.replace(R.id.main_content, gallery_frag);
+//                    fragmentTransaction.addToBackStack(null); // commit()을 호출하기 전에 먼저 addToBackStack()를 호출해야 해야 트랜잭션을 프래그먼트 트랜잭션의 백 스택에 추가할 수 있다
+//                    fragmentTransaction.commit();
+                }
+            });
         }
 
         @Override

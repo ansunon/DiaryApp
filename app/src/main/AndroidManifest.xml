@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GalleryActivity"></activity>
+        <activity
+            android:name=".ProfileModifyActivity"
+            android:label="@string/title_activity_profile_modify"></activity>
+        <activity android:name=".GalleryActivity" />
         <activity
             android:name=".popup.CreateCategoryPopup"
             android:theme="@style/popup" />
