@@ -1,16 +1,21 @@
-
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <PreferenceCategory app:title="@string/messages_header">
-
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ListPreference
+            app:defaultValue="남성"
+            app:entries="@array/action_list"
+            app:entryValues="@array/action_values"
             app:key="reply"
             app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
 
-    </PreferenceCategory>
-
+    <PreferenceScreen
+        android:title="Go to android.com"
+        android:summary="browse android.com"
+        app:iconSpaceReserved="false">
+        <intent android:action="android.intent.action.VIEW"
+            android:data="http://www.android.com" />
+    </PreferenceScreen>
 </PreferenceScreen>
+
+

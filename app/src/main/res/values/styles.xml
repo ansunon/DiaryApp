@@ -51,4 +51,8 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
+
+    <style name="proferenceLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
 </resources>

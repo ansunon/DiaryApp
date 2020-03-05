@@ -1,12 +1,12 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+    <string-array name="action_list">
+        <item>남성</item>
+        <item>여성</item>
+        <item>밝히고싶지 않음</item>
     </string-array>
-
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="action_values">
+        <item>남성</item>
+        <item>여성</item>
+        <item>밝히고싶지 않음</item>
     </string-array>
 </resources>
