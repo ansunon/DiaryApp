@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.diaryproject.DTO.BoardDTO;
 import com.example.diaryproject.DTO.PostDTO;
+import com.example.diaryproject.HomeActivity;
 import com.example.diaryproject.popup.PostUploadPopup;
 import com.example.diaryproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -49,14 +50,14 @@ public class NotificationsFragment extends Fragment {
     private List<PostDTO> postDTOS = new ArrayList<>();
     private List<String> uidList = new ArrayList<>();
 
-    private Button post_upload_btn; // 방명록 작성 버튼
-
     private NotificationsViewModel notificationsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel = ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+
+        HomeActivity.currentFragment = "NotificationsFrag"; // 구분하기위해서
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -85,14 +86,6 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { // 이게 무조건 있어야 한다.
 
-            }
-        });
-
-        post_upload_btn = root.findViewById(R.id.post_upload_button);
-        post_upload_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), PostUploadPopup.class)); // 게시글 작성 페이지로 이동한다. ※※※※※※※※※※※※※※※
             }
         });
 

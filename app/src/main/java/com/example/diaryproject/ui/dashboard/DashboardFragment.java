@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.diaryproject.DTO.CategoryDTO;
 import com.example.diaryproject.GalleryActivity;
+import com.example.diaryproject.HomeActivity;
 import com.example.diaryproject.R;
 import com.example.diaryproject.ui.board.BoardViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,8 +48,6 @@ public class DashboardFragment extends Fragment {
     private ArrayAdapter<String> adapter;
     ArrayList<String> list;
 
-
-
     private BoardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -56,6 +55,9 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(BoardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        HomeActivity.currentFragment = "DashboardFrag"; // 구분하기위해서
+
 //        startActivity(new Intent(getContext(), GalleryActivity.class)); // 임시로 갤러리 액티비티를 실행해본다.
 
         database = FirebaseDatabase.getInstance();
@@ -68,8 +70,8 @@ public class DashboardFragment extends Fragment {
         list.add("category2");
 
         //adapter = new ArrayAdapter<String>(this, R.id.gallery_category_spinner, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner.setAdapter(adapter);
 
 
 

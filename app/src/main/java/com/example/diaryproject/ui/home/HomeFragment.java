@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
+import com.example.diaryproject.HomeActivity;
 import com.example.diaryproject.LoginActivity;
 import com.example.diaryproject.ProfileModifyActivity;
 import com.example.diaryproject.R;
@@ -72,13 +73,14 @@ public class HomeFragment extends Fragment {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        HomeActivity.currentFragment = "HomeFrag"; // 구분하기위해서
+
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance(); // 데이터베이스를 가져오는 부분
         databaseReference = database.getReference(); // 데이터베이스를 가져오는 부분
         storage = FirebaseStorage.getInstance(); // storage 가져오는 부분
 
         textView_email = root.findViewById(R.id.home_profile_useremail);
-        textView_email.setText(auth.getCurrentUser().getDisplayName()); // 이것도 문제이다. 원래 여기에 닉네임을 띄울 생각이였는데....
 
         logout_btn = root.findViewById(R.id.mypage_logout_btn);
         logout_btn.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,7 @@ public class HomeFragment extends Fragment {
         });
 
         profile_image = root.findViewById(R.id.mypage_profile_image);
-        Glide.with(this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(profile_image); // 현재 프로필 이미지 저장 한걸 가져올수 있다.
+        getUserProfile();
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,11 +111,17 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 // 프로필 고치는 액티비티로 이동해야한다.
                 startActivity(new Intent(getActivity(), ProfileModifyActivity.class));
-                Toast.makeText(getContext(), "fix profile button click",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "fix profile button click", Toast.LENGTH_LONG).show();
             }
         });
 
         return root;
+    }
+
+    @Override
+    public void onResume() { // 재시작시 프로필 이미지를 변경해야한다.
+        super.onResume();
+        getUserProfile();
     }
 
     // --------------------------------------------------------------------------------------------------------------
@@ -134,28 +142,10 @@ public class HomeFragment extends Fragment {
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
+            Glide.with(this).load(photoUrl).into(profile_image); // 현재 프로필 이미지 저장 한걸 가져올수 있다.
+            textView_email.setText(name);
         }
         // [END get_user_profile]
-    }
-
-    public void getProviderData() {
-        // [START get_provider_data]
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            for (UserInfo profile : user.getProviderData()) {
-                // Id of the provider (ex: google.com)
-                String providerId = profile.getProviderId();
-
-                // UID specific to the provider
-                String uid = profile.getUid();
-
-                // Name, email address, and profile photo Url
-                String name = profile.getDisplayName();
-                String email = profile.getEmail();
-                Uri photoUrl = profile.getPhotoUrl();
-            }
-        }
-        // [END get_provider_data]
     }
 
     public void updateProfile() {
@@ -163,7 +153,6 @@ public class HomeFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                //.setDisplayName("Jane Q. User") // 입력받은 텍스트가 들어가면 된다. Displayname nickname이 된다.
                 .setPhotoUri(Uri.parse(imagePath)) // 여기서 storage 경로가 들어오면 된다.
                 .build();
 

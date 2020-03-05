@@ -67,7 +67,7 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/follow_imageview"
                         android:layout_width="15dp"
                         android:layout_height="18dp"
                         android:layout_alignParentRight="true"

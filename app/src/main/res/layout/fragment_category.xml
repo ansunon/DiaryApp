@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:spinnerMode="dialog"/>
         <Button
-            android:id="@+id/create_category_btn"
+            android:id="@+id/move_category_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="카테고리 생성"/>

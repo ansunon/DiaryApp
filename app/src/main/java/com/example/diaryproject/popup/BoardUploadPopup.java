@@ -122,6 +122,7 @@ public class BoardUploadPopup extends AppCompatActivity {
                 boardDTO.description = description.getText().toString();
                 boardDTO.uid = mAuth.getCurrentUser().getUid();
                 boardDTO.userId = mAuth.getCurrentUser().getEmail();
+                boardDTO.writer_userName = mAuth.getCurrentUser().getDisplayName();
                 boardDTO.imageNmae = file.getLastPathSegment(); // 삭제할 이미지의 이름
                 boardDTO.writer_profile_imageUrl = mAuth.getCurrentUser().getPhotoUrl().toString(); // 작성자의 프로필 이미지는 등록하는 부분
 

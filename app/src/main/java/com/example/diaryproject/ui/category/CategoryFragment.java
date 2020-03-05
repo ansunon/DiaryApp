@@ -1,6 +1,5 @@
 package com.example.diaryproject.ui.category;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.diaryproject.popup.CreateCategoryPopup;
+import com.example.diaryproject.HomeActivity;
 import com.example.diaryproject.DTO.CategoryDTO;
 import com.example.diaryproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +39,7 @@ public class CategoryFragment extends Fragment {
     private List<CategoryDTO> categoryDTOList = new ArrayList<>();
     private List<String> uidList = new ArrayList<>();
 
-    private Button add_category_btn;
+    private Button move_category_btn;
 
     private CategoryViewModel galleryViewModel;
 
@@ -49,6 +49,7 @@ public class CategoryFragment extends Fragment {
                 ViewModelProviders.of(this).get(CategoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_category, container, false);
 
+        HomeActivity.currentFragment = "CategoryFrag"; // 구분하기위해서
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -81,11 +82,11 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-        add_category_btn = root.findViewById(R.id.create_category_btn); // category 생성하는 버튼
-        add_category_btn.setOnClickListener(new View.OnClickListener() {
+        move_category_btn = root.findViewById(R.id.move_category_btn); // category 생성하는 버튼
+        move_category_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // 새로운 카테고리 생성하는 액티비티로 이동
-                startActivity(new Intent(getContext(), CreateCategoryPopup.class));
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "해당 카테고리 이동",Toast.LENGTH_LONG).show();
             }
         });
         return root;
