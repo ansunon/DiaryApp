@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.diaryproject.DTO.ImageDTO;
+import com.example.diaryproject.DTO.BoardDTO;
 import com.example.diaryproject.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -117,15 +116,15 @@ public class BoardUploadPopup extends AppCompatActivity {
                 while (!uri.isComplete()) ; // ★★★★★★★★★★★★★★★
                 Uri url = uri.getResult(); // ★★★★★★★★★★★★★★★
 
-                ImageDTO imageDTO = new ImageDTO();
-                imageDTO.imageUrl = url.toString();
-                imageDTO.title = title.getText().toString();
-                imageDTO.description = description.getText().toString();
-                imageDTO.uid = mAuth.getCurrentUser().getUid();
-                imageDTO.userId = mAuth.getCurrentUser().getEmail();
-                imageDTO.imageNmae = file.getLastPathSegment(); // 삭제할 이미지의 이름
+                BoardDTO boardDTO = new BoardDTO();
+                boardDTO.imageUrl = url.toString();
+                boardDTO.title = title.getText().toString();
+                boardDTO.description = description.getText().toString();
+                boardDTO.uid = mAuth.getCurrentUser().getUid();
+                boardDTO.userId = mAuth.getCurrentUser().getEmail();
+                boardDTO.imageNmae = file.getLastPathSegment(); // 삭제할 이미지의 이름
 
-                databaseReference.child("images").push().setValue(imageDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
+                databaseReference.child("images").push().setValue(boardDTO); //  데이터베이스에 저장하는 부분 push()를 해야 array처럼 데이터베이스에 쌓이게 된다.
 
                 Toast.makeText(getApplicationContext(), "upload success", Toast.LENGTH_SHORT).show();
                 finish();

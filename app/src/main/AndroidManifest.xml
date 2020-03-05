@@ -13,14 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".popup.CreateCategoryPopup"
-            android:theme="@style/popup"></activity>
-        <activity android:name=".popup.BoardUploadPopup"
-            android:theme="@style/popup"></activity>
+        <activity android:name=".GalleryActivity"></activity>
+        <activity
+            android:name=".popup.CreateCategoryPopup"
+            android:theme="@style/popup" />
+        <activity
+            android:name=".popup.BoardUploadPopup"
+            android:theme="@style/popup" />
         <activity
             android:name=".popup.PostUploadPopup"
             android:label="@string/title_activity_post_upload"
-            android:theme="@style/popup"></activity>
+            android:theme="@style/popup" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />

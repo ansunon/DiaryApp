@@ -1,4 +1,4 @@
-package com.example.diaryproject.ui.gallery;
+package com.example.diaryproject.ui.category;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

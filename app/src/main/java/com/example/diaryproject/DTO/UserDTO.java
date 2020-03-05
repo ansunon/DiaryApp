@@ -2,10 +2,8 @@ package com.example.diaryproject.DTO;
 
 import java.util.HashMap;
 import java.util.Map;
-
-
-// -> DTO 안에 파이어베이스 데이터베이스를 접근해서 생성자를 이용한후 정리를 한다.
-public class CategoryDTO {
+/////////////////////////////////////세모
+public class UserDTO {
 
     public String imageUrl;
     public String imageNmae; // 삭제할 이미지의 이름을 저장하는 변수

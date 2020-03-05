@@ -21,7 +21,7 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/mypage_profile_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -31,10 +31,10 @@
                 android:src="@drawable/ic_account_circle_black_48dp" />
 
             <TextView
+                android:id="@+id/home_profile_useremail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="user@email.com" />
+                android:layout_gravity="center"/>
         </LinearLayout>
 
         <LinearLayout
@@ -133,6 +133,13 @@
             android:layout_weight="1"
             android:text="logout" />
     </LinearLayout>
+
+    <!--본인의 프로필을 변경할수 있어야한다.-->
+    <Button
+        android:id="@+id/fix_profile_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="프로필 수정" />
     <!-- Cardview에서는 최근 게시글만 볼수 있도록 한다.-->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -144,5 +151,5 @@
             android:layout_height="match_parent" />
 
     </androidx.cardview.widget.CardView>
-
+    <!-- 그리고 싸이월드 이모티콘 꾸미는 부분-->
 </LinearLayout>

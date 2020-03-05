@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_gallery"
-        android:name="com.example.diaryproject.ui.gallery.CategoryFragment"
+        android:name="com.example.diaryproject.ui.category.CategoryFragment"
         android:label="Gallery"
         tools:layout="@layout/fragment_category" />
 </navigation>

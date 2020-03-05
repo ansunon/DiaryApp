@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <!-- adjushtViewBounds 공백 없애기 centercrop를 이용하면 이미지를 알맞게 잘라준다
+    android:layout_centerInParent="true" 이미지를 안짜른다-->
+    <ImageView
+        android:id="@+id/mypage_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/testimage"
+        android:contentDescription="gallery image"
+        android:visibility="visible"/>
+
+    <!-- 이미지 확대시 scaleType 적용-->
+    <ImageView
+        android:id="@+id/mypage_bigger_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/testimage"
+        android:visibility="gone"
+        android:scaleType="fitCenter"
+        android:contentDescription="gallery Bigger image" />
+</RelativeLayout>

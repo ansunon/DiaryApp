@@ -3,11 +3,14 @@ package com.example.diaryproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -51,11 +54,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText emailTextview; // 로그인에서 아이디
     private EditText passwordTextview; // 비밀번호
 
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.progressBar);
         // Button listeners
         findViewById(R.id.signInButton).setOnClickListener(this);
         findViewById(R.id.email_login_button).setOnClickListener(this); // email로 로그인 하는 버튼
@@ -100,14 +106,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
+                    progressBar.setVisibility(View.VISIBLE);
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     finish();
                 } else { // 로그인이 안되어있는 부분
-
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         };
     }
+/*
+    //progressDialog 사용할시
+    private ProgressDialog progressDialog;
+    public void loading() { //로딩
+        new android.os.Handler().postDelayed(new Runnable() {
+            public void run() {
+                progressDialog = ProgressDialog.show(LoginActivity.this, "ProgressDialog 테스트", "테스트 중 입니다.", true, true);
+            }
+        }, 0);
+    }
+
+
+    public void loadingEnd() {
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 0);
+    }
+*/
 
     // facebook 로그인 시에 사용되는 함수
     private void handleFacebookAccessToken(AccessToken token) {
@@ -214,7 +242,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (i == R.id.signInButton) {
             signIn();
         } else if (i == R.id.email_login_button) {
-            if (!emailTextview.getText().toString().equals("") && !passwordTextview.getText().toString().equals("") ) {
+            if (!emailTextview.getText().toString().equals("") && !passwordTextview.getText().toString().equals("")) {
                 loginUser(emailTextview.getText().toString(), passwordTextview.getText().toString()); // 여기서 인텐트를 시작하면 안돼
             } else {
                 Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요", Toast.LENGTH_LONG).show();

@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.diaryproject.DTO.ImageDTO;
+import com.example.diaryproject.DTO.BoardDTO;
 import com.example.diaryproject.DTO.PostDTO;
 import com.example.diaryproject.popup.PostUploadPopup;
 import com.example.diaryproject.R;
@@ -166,23 +166,23 @@ public class NotificationsFragment extends Fragment {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                ImageDTO imageDTO = mutableData.getValue(ImageDTO.class);
-                if (imageDTO == null) {
+                BoardDTO boardDTO = mutableData.getValue(BoardDTO.class);
+                if (boardDTO == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (imageDTO.stars.containsKey(auth.getCurrentUser().getUid())) { // like button 을 눌렀니? 부분
+                if (boardDTO.stars.containsKey(auth.getCurrentUser().getUid())) { // like button 을 눌렀니? 부분
                     // Unstar the post and remove self from stars
-                    imageDTO.starCount = imageDTO.starCount - 1;
-                    imageDTO.stars.remove(auth.getCurrentUser().getUid());
+                    boardDTO.starCount = boardDTO.starCount - 1;
+                    boardDTO.stars.remove(auth.getCurrentUser().getUid());
                 } else { // 그 게시글에 내 아이디가 없으면 like button 을 누를수있다.
                     // Star the post and add self to stars
-                    imageDTO.starCount = imageDTO.starCount + 1;
-                    imageDTO.stars.put(auth.getCurrentUser().getUid(), true);
+                    boardDTO.starCount = boardDTO.starCount + 1;
+                    boardDTO.stars.put(auth.getCurrentUser().getUid(), true);
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(imageDTO);
+                mutableData.setValue(boardDTO);
                 return Transaction.success(mutableData);
             }
 

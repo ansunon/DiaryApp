@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@color/colorWhite">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp">
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_marginTop="5dp"
+            android:indeterminate="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            style="?android:attr/progressBarStyleHorizontal"/>
+
         <ImageView
             android:id="@+id/image_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="30dp"
             android:layout_marginTop="100dp"
+            android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:text="Diary Project"
-            android:src="@drawable/login_forest_logo"/>
+            android:src="@drawable/login_forest_logo"
+            android:text="Diary Project" />
 
         <EditText
             android:id="@+id/email_edittext"
@@ -27,6 +38,7 @@
             android:layout_height="match_parent"
             android:hint="email"
             android:inputType="textEmailAddress" />
+
         <EditText
             android:id="@+id/password_edittext"
             android:layout_width="match_parent"
@@ -38,36 +50,39 @@
             android:id="@+id/email_login_button"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
             android:background="@color/colorGreen"
-            android:textColor="@color/colorWhite"
-            android:text="로그인"/>
+            android:text="로그인"
+            android:textColor="@color/colorWhite" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/colorGray"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@color/colorGray" />
+
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  또는  "
-                android:gravity="center"/>
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="  또는  " />
+
             <View
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorGray"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@color/colorGray" />
 
         </LinearLayout>
 
@@ -94,20 +109,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:visibility="visible"/>
+                android:visibility="visible" />
 
         </RelativeLayout>
     </LinearLayout>
+
     <RelativeLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
         <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/colorGray"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:background="@color/colorGray" />
+
         <TextView
             android:id="@+id/register_textview"
             android:layout_width="match_parent"
@@ -116,7 +134,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:textColor="@color/colorGray"
-            android:text="계정이 없으신가요? 가입하기."/>
+            android:text="계정이 없으신가요? 가입하기."
+            android:textColor="@color/colorGray" />
     </RelativeLayout>
 </RelativeLayout>

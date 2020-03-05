@@ -3,7 +3,7 @@ package com.example.diaryproject.DTO;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ImageDTO {
+public class BoardDTO {
 
     public String imageUrl;
     public String imageNmae; // 삭제할 이미지의 이름을 저장하는 변수
