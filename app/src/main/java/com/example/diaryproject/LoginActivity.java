@@ -115,27 +115,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
     }
-/*
-    //progressDialog 사용할시
-    private ProgressDialog progressDialog;
-    public void loading() { //로딩
-        new android.os.Handler().postDelayed(new Runnable() {
-            public void run() {
-                progressDialog = ProgressDialog.show(LoginActivity.this, "ProgressDialog 테스트", "테스트 중 입니다.", true, true);
-            }
-        }, 0);
-    }
-
-
-    public void loadingEnd() {
-        new android.os.Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.dismiss();
-            }
-        }, 0);
-    }
-*/
 
     // facebook 로그인 시에 사용되는 함수
     private void handleFacebookAccessToken(AccessToken token) {
@@ -147,9 +126,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(FACEBOOK_TAG, "signInWithCredential:success");
-
-                    Toast.makeText(LoginActivity.this, "current user: " + mAuth.getCurrentUser().getDisplayName(), Toast.LENGTH_LONG).show();
-                    //FirebaseUser user = mAuth.getCurrentUser(); // 리스너에 현재 접속한 계정을 넣어준다.
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_LONG).show();
@@ -163,7 +139,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStart() {
         super.onStart();
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener); // 리스너에 연결해주는 부분 귀를 붙혀주는 부분
     }
 
@@ -206,8 +181,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.w(GOOLGE_TAG, "Google sign in success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
-
                         } else {
                             Log.w(GOOLGE_TAG, "Google sign in failed");
                         }

@@ -1,5 +1,6 @@
 package com.example.diaryproject.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.content.CursorLoader;
 
@@ -46,10 +48,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+import static com.facebook.FacebookSdk.getApplicationContext;
+
+public class HomeFragment extends Fragment implements HomeActivity.OnBackPressedListener{
 
     private HomeViewModel homeViewModel;
-    private long time = 0; // 취소 버튼을 누를때 사용하는 변수
 
     private static final int GALLERY_CODE = 10; // 갤러리 선택 번호
 
@@ -186,5 +189,18 @@ public class HomeFragment extends Fragment {
         int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(index);
+    }
+
+    @Override
+    public void onBack() { // 해당 소스 https://jinunthing.tistory.com/22
+        // 리스너를 설정하기 위해 Activity 를 받아옵니다.
+        HomeActivity activity = (HomeActivity)getActivity();
+        // 한번 뒤로가기 버튼을 눌렀다면 Listener 를 null 로 해제해줍니다.
+        activity.setOnBackPressedListener(null);
+    }
+    @Override // fragment 호출시 반드시 호출되는 오버라이드 메소이다.
+    public void onAttach(Activity context) {
+        super.onAttach(context);
+        ((HomeActivity)context).setOnBackPressedListener(this);
     }
 }
