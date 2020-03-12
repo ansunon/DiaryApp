@@ -114,7 +114,6 @@ public class HomeFragment extends Fragment implements HomeActivity.OnBackPressed
             public void onClick(View view) {
                 // 프로필 고치는 액티비티로 이동해야한다.
                 startActivity(new Intent(getActivity(), ProfileModifyActivity.class));
-                Toast.makeText(getContext(), "fix profile button click", Toast.LENGTH_LONG).show();
             }
         });
 

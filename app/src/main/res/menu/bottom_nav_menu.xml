@@ -22,8 +22,8 @@
         android:title="Board" />
 
     <item
-        android:id="@+id/navigation_gallery"
+        android:id="@+id/navigation_category"
         android:icon="@drawable/ic_menu_gallery"
-        android:title="@string/menu_gallery" />
+        android:title="@string/menu_category" />
 
 </menu>

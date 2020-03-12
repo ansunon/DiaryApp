@@ -20,46 +20,49 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView_add_image"
+            android:id="@+id/gallery_add_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_add_photo_alternate_black_24dp"
-            android:visibility="visible"/>
+            android:src="@drawable/ic_add_photo_alternate_black_24dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/gallery_category_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_toLeftOf="@+id/gallery_category_chose_btn"
+            android:layout_toRightOf="@+id/gallery_add_image"
+            android:autofillHints="category"
+            android:spinnerMode="dialog" />
+
+        <Button
+            android:id="@+id/gallery_category_chose_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/TextLabel">
+            android:layout_margin="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="선택" />
+    </RelativeLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:textColor="@color/colorGray"
-                android:hint="title" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        android:theme="@style/TextLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:theme="@style/TextLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:gravity="top"
             android:hint="description"
-            android:textColor="@color/colorGray"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:textColor="@color/colorGray" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -69,7 +72,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/upload_btn"
+            android:id="@+id/create_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -83,7 +86,7 @@
             android:background="#66bdbdbd" />
 
         <Button
-            android:id="@+id/cancel_button"
+            android:id="@+id/cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -82,13 +82,6 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-        move_category_btn = root.findViewById(R.id.move_category_btn); // category 생성하는 버튼
-        move_category_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "해당 카테고리 이동",Toast.LENGTH_LONG).show();
-            }
-        });
         return root;
     }
 
@@ -117,6 +110,7 @@ public class CategoryFragment extends Fragment {
 //                    fragmentTransaction.replace(R.id.main_content, gallery_frag);
 //                    fragmentTransaction.addToBackStack(null); // commit()을 호출하기 전에 먼저 addToBackStack()를 호출해야 해야 트랜잭션을 프래그먼트 트랜잭션의 백 스택에 추가할 수 있다
 //                    fragmentTransaction.commit();
+                    Toast.makeText(getContext(), "test",Toast.LENGTH_LONG).show();
                 }
             });
         }

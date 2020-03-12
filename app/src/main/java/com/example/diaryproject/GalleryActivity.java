@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.diaryproject.DTO.CategoryDTO;
 import com.example.diaryproject.DTO.GalleryDTO;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +34,7 @@ public class GalleryActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseStorage storage;
 
-    private List<GalleryDTO> galleryDTOS = new ArrayList<>();
+    private List<CategoryDTO> categoryDTOS = new ArrayList<>();
     private List<String> uidList = new ArrayList<>();
 
 
@@ -57,13 +58,14 @@ public class GalleryActivity extends AppCompatActivity {
         firebaseDatabase.getReference().child("gallery").addValueEventListener(new ValueEventListener() { // 옵저버 패턴
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) { // 실시간으로 데이터변환이 일어나는 부분
-                galleryDTOS.clear(); // 처음에 초기화를 해야한다. -> 미리 저장되어있던 데이터를 클리어
+                categoryDTOS.clear(); // 처음에 초기화를 해야한다. -> 미리 저장되어있던 데이터를 클리어
                 uidList.clear(); // 처음에 초기화를 해야한다.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 하나씩 데이터를 읽어오는 부분
-                    GalleryDTO galleryDTO = snapshot.getValue(GalleryDTO.class); // 데이터베이스에 이상하게 저장되어있으면 읽어올때 문제가 생긴다.
-                    galleryDTOS.add(galleryDTO);
+                    CategoryDTO categoryDTO = snapshot.getValue(CategoryDTO.class); // 데이터베이스에 이상하게 저장되어있으면 읽어올때 문제가 생긴다.
+                    categoryDTOS.add(categoryDTO);
                     String uidKey = snapshot.getKey(); // 데이터베이스에있는 하나의 게시글의 key값을 가져온다.
                     uidList.add(uidKey);
+                    // 갤러리 이미지들을 가져와야한다.
                 }
                 gridFragmentRecyclerViewAdapter.notifyDataSetChanged(); // 계속 갱신 해줘야한다.
             }
@@ -81,11 +83,9 @@ public class GalleryActivity extends AppCompatActivity {
         // 1. MyViewHolder 만들기
         public class CustomViewHolder extends RecyclerView.ViewHolder {
             ImageView grid_image;
-            //ImageView zoom_grid_image;
             CustomViewHolder(View view){
                 super(view);
                 grid_image = view.findViewById(R.id.mypage_img);
-                //zoom_grid_image = view.findViewById(R.id.mypage_bigger_img);
             }
         }
 
@@ -107,31 +107,9 @@ public class GalleryActivity extends AppCompatActivity {
 
             holder.itemView.setLayoutParams(params); // 해당 이미지뷰 크기를 조정 해주자
 
-            Glide.with(holder.itemView).load(galleryDTOS.get(position).imageUrl).into(myViewHolder.grid_image);
-
-//            myViewHolder.grid_image.setOnClickListener(new View.OnClickListener(){ // 해당이미지 클릭시 확대 intent를 하지말고 animation을 이용할 것
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(getContext(), Zoomimage.class);
-//                    intent.putExtra("imageno",imageArrayList.get(position).mypage_image);
-//                    startActivity(intent);
-//
-//                    //-> 여기서 이미지를 클릭하면 확대하는 부분
-//                    ImageView zoomimageview = getActivity().findViewById(R.id.mypage_bigger_img); // 확대할 이미지
-//                    ImageView imageView = getActivity().findViewById(R.id.mypage_img); // 잠시 안보여야할 이미지
-//
-//                    Toolbar toolbar = getActivity().findViewById(R.id.my_toolbar);
-//                    Toolbar columntoobar = getActivity().findViewById(R.id.column_Fragment);
-//                    toolbar.setVisibility(View.GONE);
-//                    toolbar.setVisibility(View.GONE); // 툴바 위와 오른쪽에 있는거 숨긴다.
-//
-//                    // 현재 프레그먼트를 가져와서 그걸 이미지 확대를 해야한다.
-//                    // 오른쪽 프레그먼트도 GONE으로 해야한다.
-//
-//                }
-//            });
+            Glide.with(holder.itemView).load(categoryDTOS.get(position).imageUrl).into(myViewHolder.grid_image);
         }
         @Override
-        public int getItemCount() { return galleryDTOS.size(); }
+        public int getItemCount() { return categoryDTOS.size(); }
     }
 }

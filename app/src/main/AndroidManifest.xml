@@ -18,6 +18,9 @@
             android:label="@string/title_activity_profile_modify"></activity>
         <activity android:name=".GalleryActivity" />
         <activity
+            android:name=".popup.GalleryUploadPopup"
+            android:theme="@style/popup" />
+        <activity
             android:name=".popup.CreateCategoryPopup"
             android:theme="@style/popup" />
         <activity

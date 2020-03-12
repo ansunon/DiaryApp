@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_board" />
 
     <fragment
-        android:id="@+id/navigation_gallery"
+        android:id="@+id/navigation_category"
         android:name="com.example.diaryproject.ui.category.CategoryFragment"
         android:label="Gallery"
         tools:layout="@layout/fragment_category" />
